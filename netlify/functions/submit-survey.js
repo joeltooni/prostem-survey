@@ -10,6 +10,8 @@
 
 import { neon } from "@neondatabase/serverless";
 
+const sql = neon(process.env.NETLIFY_DATABASE_URL);
+
 // ─── App Router version (Next.js 13+) ───────────────────────
 export async function POST(request) {
   try {
@@ -27,7 +29,6 @@ export async function POST(request) {
 
 // ─── Shared logic ────────────────────────────────────────────
 async function saveSurveyResponse(data) {
-  const sql = neon(process.env.DATABASE_URL);
 
   const {
     // Persona
