@@ -1,6 +1,6 @@
-import { neon } from "@netlify/neon";
+import { neon } from "@neondatabase/serverless";
 
-const sql = neon(); // automatically uses NETLIFY_DATABASE_URL
+const sql = neon(process.env.NETLIFY_DATABASE_URL);
 
 export const handler = async (event) => {
   if (event.httpMethod !== "POST") {
