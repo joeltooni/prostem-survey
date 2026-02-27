@@ -549,7 +549,7 @@ export default function SurveyForm() {
     setLoading(true);
     setApiError(null);
     try {
-      const res = await fetch("/api/submit-survey", {
+      const res = await fetch("/.netlify/functions/submit-survey", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
