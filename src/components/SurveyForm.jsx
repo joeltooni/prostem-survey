@@ -429,19 +429,19 @@ const CURRENCY_TIERS = {
   RW: {
     code: "RWF", symbol: "RWF",
     tiers: [
-      { value: "tier_1", label: "Under RWF 15,000 per term  (~$12)" },
-      { value: "tier_2", label: "RWF 15,000 – 30,000 per term  (~$12–$25)" },
-      { value: "tier_3", label: "RWF 30,000 – 60,000 per term  (~$25–$50)" },
-      { value: "tier_4", label: "RWF 60,000+ per term  (~$50+) — if results are clearly proven" },
+      { value: "tier_1", label: "Under RWF 15,000 per term" },
+      { value: "tier_2", label: "RWF 15,000 – 30,000 per term" },
+      { value: "tier_3", label: "RWF 30,000 – 60,000 per term" },
+      { value: "tier_4", label: "RWF 60,000+ per term — if results are clearly proven" },
     ],
   },
   NG: {
     code: "NGN", symbol: "₦",
     tiers: [
-      { value: "tier_1", label: "Under ₦10,000 per term  (~$6)" },
-      { value: "tier_2", label: "₦10,000 – 25,000 per term  (~$6–$15)" },
-      { value: "tier_3", label: "₦25,000 – 50,000 per term  (~$15–$30)" },
-      { value: "tier_4", label: "₦50,000+ per term  (~$30+) — if results are clearly proven" },
+      { value: "tier_1", label: "Under ₦10,000 per term" },
+      { value: "tier_2", label: "₦10,000 – 25,000 per term" },
+      { value: "tier_3", label: "₦25,000 – 50,000 per term" },
+      { value: "tier_4", label: "₦50,000+ per term — if results are clearly proven" },
     ],
   },
   CA: {
@@ -2113,27 +2113,35 @@ const styles = `
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --blue:       #2563EB;
-    --blue-d:     #1d4ed8;
-    --blue-bg:    #eff6ff;
-    --blue-mid:   #dbeafe;
-    --teal:       #0D9488;
-    --teal-d:     #0f766e;
-    --teal-bg:    #f0fdfa;
-    --teal-mid:   #ccfbf1;
-    --ink:        #1F2937;
-    --muted:      #64748B;
-    --border:     #E5E7EB;
-    --bg:         #F9FAFB;
-    --white:      #FFFFFF;
-    --red:        #DC2626;
-    --red-light:  #FEF2F2;
-    --red-border: #FECACA;
-    --red-mid:    #FCA5A5;
-    --shadow-sm:  0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
-    --shadow:     0 4px 12px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.04);
-    --font:       'Plus Jakarta Sans', sans-serif;
-    --r:          10px;
+    /* ── Brand palette ── */
+      --blue:          #233F92;
+      --blue-d:        #1a2f6e;
+      --blue-bg:       #eef0f9;
+      --blue-mid:      #c5cce8;
+      --orange:        #F99638;
+      --orange-d:      #e07d1f;
+      --orange-bg:     #fff5e9;
+      --orange-mid:    #fcd9a8;
+      --lightblue:     #10B6EE;
+      --lightblue-d:   #0d9fd4;
+      --lightblue-bg:  #e6f7fd;
+      --lightblue-mid: #b3e8f9;
+      --yellow:        #F9CA79;
+      --green:         #76CC4D;
+      /* ── Neutrals ── */
+      --ink:        #1a2035;
+      --muted:      #64748B;
+      --border:     #E5E7EB;
+      --bg:         #F4F6FB;
+      --white:      #FFFFFF;
+      --red:        #DC2626;
+      --red-light:  #FEF2F2;
+      --red-border: #FECACA;
+      --red-mid:    #FCA5A5;
+      --shadow-sm:  0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow:     0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+      --font:       'Plus Jakarta Sans', sans-serif;
+      --r:          10px;
   }
 
   .survey-wrapper {
@@ -2166,8 +2174,9 @@ const styles = `
 
   .logo-icon {
     width: 30px; height: 30px;
-    background: linear-gradient(135deg, var(--blue), var(--teal));
+    background: var(--blue);
     border-radius: 8px;
+    box-shadow: 3px 3px 0 var(--orange);
   }
 
   .logo-text { font-size: 1.1rem; font-weight: 800; color: var(--ink); letter-spacing: -0.3px; }
@@ -2196,11 +2205,11 @@ const styles = `
 
   .progress-track { height: 3px; background: var(--border); }
 
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--blue), var(--teal));
-    transition: width 0.45s ease;
-  }
+.progress-fill {
+  height: 100%;
+  background: var(--orange);
+  transition: width 0.45s ease;
+}
 
   /* ── TABS — [4] centered ── */
   .tabs-bar {
@@ -2230,7 +2239,7 @@ const styles = `
     flex-shrink: 0;
   }
 
-  .tab.done { color: var(--teal); }
+  .tab.done { color: var(--lightblue); }
   .tab.active { color: var(--blue); border-bottom-color: var(--blue); background: var(--blue-bg); }
   .tab-clickable { cursor: pointer; }
   .tab-clickable:hover { background: var(--teal-bg); color: var(--teal-d); }
@@ -2243,7 +2252,7 @@ const styles = `
     transition: all 0.2s;
   }
 
-  .tab.done .tab-num { background: var(--teal); color: white; }
+  .tab.done .tab-num { background: var(--lightblue); color: white; }
   .tab.active .tab-num { background: var(--blue); color: white; }
 
   /* ── VALIDATION BANNER ── */
@@ -2484,8 +2493,9 @@ const styles = `
   .checkbox-card:hover { border-color: #5eead4; background: var(--teal-bg); }
 
   .checkbox-card.checked {
-    border-color: var(--teal); background: var(--teal-bg); color: var(--teal-d);
+    border-color: var(--lightblue); background: var(--lightblue-bg); color: var(--lightblue-d);
   }
+  .checkbox-card.checked .checkbox-icon { background: var(--lightblue); border-color: var(--lightblue); }
 
   .checkbox-icon {
     width: 18px; height: 18px;
@@ -2494,7 +2504,6 @@ const styles = `
     font-size: 0.7rem; font-weight: 800; color: white; flex-shrink: 0; transition: all 0.14s;
   }
 
-  .checkbox-card.checked .checkbox-icon { background: var(--teal); border-color: var(--teal); }
 
   /* ── SCALE ── */
   .scale-container { display: flex; flex-direction: column; gap: 0.6rem; }
@@ -2516,8 +2525,8 @@ const styles = `
   .scale-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-bg); }
 
   .scale-btn.active {
-    background: var(--blue); border-color: var(--blue); color: white;
-    box-shadow: 0 4px 12px rgba(37,99,235,0.25); transform: translateY(-1px);
+    background: var(--orange); border-color: var(--orange); color: white;
+    box-shadow: 0 4px 12px rgba(249,150,56,0.28); transform: translateY(-1px);
   }
 
   .btn-error { border-color: var(--red-mid) !important; }
@@ -2542,11 +2551,10 @@ const styles = `
   .btn-back:hover { border-color: var(--ink); color: var(--ink); }
 
   .btn-next {
-    background: var(--blue); color: white;
-    box-shadow: 0 4px 14px rgba(37,99,235,0.28);
+    background: var(--orange); color: white;
+    box-shadow: 0 4px 14px rgba(249,150,56,0.30);
   }
-
-  .btn-next:hover { background: var(--blue-d); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,0.32); }
+  .btn-next:hover { background: var(--orange-d); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(249,150,56,0.38); }
 
   .btn-submit {
     background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%);
@@ -2602,7 +2610,7 @@ const styles = `
   .success-card p { color: var(--muted); font-size: 0.97rem; line-height: 1.7; margin-bottom: 1.75rem; }
 
   .success-pill {
-    display: inline-block; background: var(--teal-bg);
+    display: inline-block; background: #edfbe6; border: 1px solid #c2edae; color: var(--green);
     border: 1px solid var(--teal-mid); color: var(--teal);
     padding: 0.5rem 1.4rem; border-radius: 99px;
     font-size: 0.87rem; font-weight: 700;
@@ -2611,8 +2619,8 @@ const styles = `
   /* ── INTRO ELEMENTS ── */
   .intro-badge {
     display: inline-flex; align-items: center;
-    background: var(--teal-bg); color: var(--teal);
-    border: 1px solid var(--teal-mid);
+    background: var(--orange-bg); color: var(--orange);
+    border: 1px solid var(--orange-mid); 
     font-size: 0.72rem; font-weight: 700; letter-spacing: 0.8px;
     text-transform: uppercase; padding: 0.3rem 0.9rem;
     border-radius: 99px; margin-bottom: 1.25rem;
