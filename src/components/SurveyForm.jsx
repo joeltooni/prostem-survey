@@ -589,6 +589,35 @@ export default function SurveyForm() {
             <h2>Thank You, Pioneer!</h2>
             <p>Your response has been recorded. You're helping shape the future of STEM education across Africa.</p>
             <div className="success-pill">Response Submitted ✓</div>
+            <div className="share-section" style={{marginTop: '2rem', textAlign: 'center'}}>
+              <p style={{fontWeight: 500, marginBottom: '0.5rem'}}>Share your impact:</p>
+              <div className="share-buttons" style={{display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap'}}>
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent('I just completed the ProSTEM survey to help shape the future of STEM education in Africa! Join me: https://prostem.africa/survey')}`}
+                  target="_blank" rel="noopener noreferrer" className="share-btn whatsapp"
+                  title="Share on WhatsApp"
+                  style={{background: '#25D366', color: 'white', borderRadius: '4px', padding: '0.5rem 1rem', textDecoration: 'none', fontWeight: 500}}
+                >WhatsApp</a>
+                <a
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('I just completed the ProSTEM survey to help shape the future of STEM education in Africa! Join me: https://prostem.africa/survey')}`}
+                  target="_blank" rel="noopener noreferrer" className="share-btn twitter"
+                  title="Share on Twitter/X"
+                  style={{background: '#1DA1F2', color: 'white', borderRadius: '4px', padding: '0.5rem 1rem', textDecoration: 'none', fontWeight: 500}}
+                >Twitter/X</a>
+                <a
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://prostem.africa/survey')}`}
+                  target="_blank" rel="noopener noreferrer" className="share-btn facebook"
+                  title="Share on Facebook"
+                  style={{background: '#4267B2', color: 'white', borderRadius: '4px', padding: '0.5rem 1rem', textDecoration: 'none', fontWeight: 500}}
+                >Facebook</a>
+                <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://prostem.africa/survey')}`}
+                  target="_blank" rel="noopener noreferrer" className="share-btn linkedin"
+                  title="Share on LinkedIn"
+                  style={{background: '#0077b5', color: 'white', borderRadius: '4px', padding: '0.5rem 1rem', textDecoration: 'none', fontWeight: 500}}
+                >LinkedIn</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1150,7 +1179,7 @@ export default function SurveyForm() {
               </label>
               <CheckboxGroup
                 options={[
-                  { value: "textbooks", label: "No — only textbooks / notebooks" },
+                  { value: "textbooks", label: "No, only textbooks / notebooks" },
                   { value: "youtube",   label: "YouTube (educational videos)" },
                   { value: "whatsapp",  label: "WhatsApp (study groups)" },
                   { value: "khan",      label: "Khan Academy" },
