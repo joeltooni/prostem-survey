@@ -548,7 +548,7 @@ export default function SurveyForm() {
   useEffect(() => {
     if (formData.persona && personaCopyRef.current) {
       setTimeout(() => {
-        personaCopyRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
       }, 100);
     }
   }, [formData.persona]);
