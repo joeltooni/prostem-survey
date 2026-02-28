@@ -467,9 +467,48 @@ const CURRENCY_TIERS = {
 // ─── Logo SVG Component ──────────────────────────────────────────────────────
 // Place your favicon.svg file at: /public/favicon.svg
 // Place your logo image at:      /public/logo.svg  (optional — currently using CSS logo)
+// const Logo = () => (
+//   <div className="logo">
+//     <div className="logo-icon"></div>
+//     <span className="logo-text">Help<span className="logo-accent">STEM</span></span>
+//   </div>
+// );
+
 const Logo = () => (
   <div className="logo">
-    <div className="logo-icon"></div>
+    <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect x="12" y="12" width="76" height="76" rx="18" ry="18" fill="#F99638">
+        <animate
+          attributeName="x"
+          values="4;12;12;4;4"
+          dur="3s"
+          repeatCount="indefinite"
+          calcMode="spline"
+          keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0.4 0 0.2 1; 0.4 0 0.2 1"
+          keyTimes="0;0.25;0.5;0.75;1"
+        />
+        <animate
+          attributeName="y"
+          values="4;12;12;4;4"
+          dur="3s"
+          repeatCount="indefinite"
+          calcMode="spline"
+          keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0.4 0 0.2 1; 0.4 0 0.2 1"
+          keyTimes="0;0.25;0.5;0.75;1"
+        />
+      </rect>
+      <rect x="4" y="4" width="76" height="76" rx="18" ry="18" fill="#10B6EE">
+        <animate
+          attributeName="opacity"
+          values="1;0.88;1;0.88;1"
+          dur="3s"
+          repeatCount="indefinite"
+          calcMode="spline"
+          keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0.4 0 0.2 1; 0.4 0 0.2 1"
+          keyTimes="0;0.25;0.5;0.75;1"
+        />
+      </rect>
+    </svg>
     <span className="logo-text">Help<span className="logo-accent">STEM</span></span>
   </div>
 );
@@ -643,24 +682,27 @@ export default function SurveyForm() {
             </div>
             <h2>Thank You, Pioneer!</h2>
             <p>Your response has been recorded. You're helping shape the future of STEM education across Africa.</p>
-            <div className="success-pill">Response Submitted ✓</div>
             <div className="share-section" style={{marginTop: "2rem", textAlign: "center"}}>
-              <p style={{fontWeight: 500, marginBottom: "0.5rem"}}>Share this with someone who cares about STEM:</p>
-              <div className="share-buttons" style={{display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap"}}>
-                <a href={`https://wa.me/?text=${encodeURIComponent("I just helped shape the future of STEM education in Africa — take 5 minutes and add your voice too: https://helpstem.africa/survey")}`}
-                  target="_blank" rel="noopener noreferrer"
-                  style={{background:"#25D366",color:"white",borderRadius:"4px",padding:"0.5rem 1rem",textDecoration:"none",fontWeight:500}}>WhatsApp</a>
-                <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("Africa's STEM education needs our voices. I just shared mine — add yours: https://helpstem.africa/survey")}`}
-                  target="_blank" rel="noopener noreferrer"
-                  style={{background:"#1DA1F2",color:"white",borderRadius:"4px",padding:"0.5rem 1rem",textDecoration:"none",fontWeight:500}}>Twitter/X</a>
-                <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://helpstem.africa/survey")}`}
-                  target="_blank" rel="noopener noreferrer"
-                  style={{background:"#4267B2",color:"white",borderRadius:"4px",padding:"0.5rem 1rem",textDecoration:"none",fontWeight:500}}>Facebook</a>
-                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://helpstem.africa/survey")}`}
-                  target="_blank" rel="noopener noreferrer"
-                  style={{background:"#0077b5",color:"white",borderRadius:"4px",padding:"0.5rem 1rem",textDecoration:"none",fontWeight:500}}>LinkedIn</a>
-              </div>
+            <p style={{fontWeight: 500, marginBottom: "0.75rem"}}>Share this with someone who cares about STEM:</p>
+            <div className="share-buttons" style={{display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap"}}>
+              <a href={`https://wa.me/?text=${encodeURIComponent("I just helped shape the future of STEM education in Africa — take 5 minutes and add your voice too: https://helpstem.netlify.app")}`}
+                target="_blank" rel="noopener noreferrer"
+                style={{background:"#25D366", color:"white", borderRadius:"8px", padding:"0.6rem 1.25rem", textDecoration:"none", fontWeight:600, display:"flex", alignItems:"center", gap:"0.4rem"}}>
+                📱 Share on WhatsApp
+              </a>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText("https://helpstem.netlify.app");
+                  alert("Link copied!");
+                }}
+                style={{background:"var(--lightblue-bg)", color:"var(--lightblue)", border:"1.5px solid var(--lightblue-mid)", borderRadius:"8px", padding:"0.6rem 1.25rem", fontWeight:600, cursor:"pointer", fontFamily:"var(--font)", display:"flex", alignItems:"center", gap:"0.4rem"}}>
+                🔗 Copy Link
+              </button>
             </div>
+            <p style={{marginTop:"0.75rem", fontSize:"0.8rem", color:"var(--muted)"}}>
+              https://helpstem.netlify.app
+            </p>
+          </div>
           </div>
         </div>
       </div>
@@ -2172,13 +2214,6 @@ const styles = `
 
   .logo { display: flex; align-items: center; gap: 0.6rem; }
 
-  .logo-icon {
-    width: 30px; height: 30px;
-    background: var(--lightblue);
-    border-radius: 8px;
-    box-shadow: 3px 3px 0 var(--orange);
-  }
-
   .logo-text { font-size: 1.1rem; font-weight: 800; color: var(--ink); letter-spacing: -0.3px; }
   .logo-accent { color: var(--lightblue); }
 
@@ -2525,8 +2560,8 @@ const styles = `
   .scale-btn:hover { border-color: var(--lightblue); color: var(--lightblue); background: var(--lightblue-bg); }
 
   .scale-btn.active {
-    background: var(--orange); border-color: var(--orange); color: white;
-    box-shadow: 0 4px 12px rgba(249,150,56,0.28); transform: translateY(-1px);
+    background: var(--lightblue); border-color: var(--lightblue); color: white;
+    box-shadow: 0 4px 12px rgba(16,182,238,0.28); transform: translateY(-1px);
   }
 
   .btn-error { border-color: var(--red-mid) !important; }
