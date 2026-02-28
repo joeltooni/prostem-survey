@@ -124,10 +124,10 @@ const PERSONAS = [
 
 // ─── Persona intro copy ──────────────────────────────────────────────────────
 const PERSONA_COPY = {
-  high_school: "You are part of the first generation of African students who will build the continent's future — not just read about it. This survey helps us design a learning experience that actually prepares you to become that engineer, doctor, or founder you've been thinking about. Your honest answers and time shape what gets built next.",
-  undergrad:   "You've already crossed the gap between classroom theory and real-world practice — and you felt it. Your lived experience is one of the most valuable perspectives we can collect. Help us fix that experience for the next generation of African innovators coming up behind you, which can be your sibling, mentee, or someone in your community.",
-  parent:      "The decisions you make today about your child's education will determine whether they lead or follow in Africa's next chapter. This survey takes 6 minutes and helps us understand what parents like you actually need — so we build tools that give your child a genuine competitive edge.",
-  admin:       "Teachers and administrators are the gateway. No innovation reaches students without your support. This survey helps us understand what is realistic in your school environment — so we build something that works with your realities, not against them.",
+  high_school: "You are part of the first generation of African students who will build the continent's future, not just read about it. This survey helps us design a learning experience that actually prepares you to become that engineer, doctor, or founder you've been thinking about. Your honest answers and time shape what gets built next.",
+  undergrad:   "You've already crossed the gap between classroom theory and real-world practice and you felt it. Your lived experience is one of the most valuable perspectives we can collect. Help us fix that experience for the next generation of African innovators coming up behind you, which can be your sibling, mentee, or someone in your community.",
+  parent:      "The decisions you make today about your child's education will determine whether they lead or follow in Africa's next chapter. This survey takes 6 minutes and helps us understand what parents like you actually need, so we build tools that give your child a genuine competitive edge.",
+  admin:       "Teachers and administrators are the gateway. No innovation reaches students without your support. This survey helps us understand what is realistic in your school environment, so we build something that works with your realities, not against them.",
 };
 
 const SECTIONS_BY_PERSONA = {
@@ -276,6 +276,7 @@ const initialFormData = {
   ugTheoryGapScale: 0, ugTeacherStyle: "",
   ugMissingTools: [],
   ugDisconnectDesc: "", ug21CenturyReadiness: "",
+  ugPayItForward: "", ugWhatToTeach: "", 
   ugContactName: "", ugContactEmail: "",
   // ── Parent ──
   parentFieldAwareness: 0, parentValueImportance: "",
@@ -441,6 +442,15 @@ const CURRENCY_TIERS = {
       { value: "tier_2", label: "₦10,000 – 25,000 per term  (~$6–$15)" },
       { value: "tier_3", label: "₦25,000 – 50,000 per term  (~$15–$30)" },
       { value: "tier_4", label: "₦50,000+ per term  (~$30+) — if results are clearly proven" },
+    ],
+  },
+  CA: {
+    code: "CAD", symbol: "CA$",
+    tiers: [
+      { value: "tier_1", label: "Under CA$15 per term" },
+      { value: "tier_2", label: "CA$15 – $35 per term" },
+      { value: "tier_3", label: "CA$35 – $70 per term" },
+      { value: "tier_4", label: "CA$70+ per term — if results are clearly proven" },
     ],
   },
   DEFAULT: {
@@ -687,10 +697,10 @@ export default function SurveyForm() {
             <div className="mission-box">
               <p className="mission-label">Why This Survey Exists</p>
               <p className="mission-body">
-                Across Africa, millions of students study Science, Technology, Engineering, and Mathematics every day — but too many finish school unable to apply what they learned. The gap between what is taught in class and what is actually needed in the real world is wide, and it is costing the continent its next generation of innovators.
+                Across Africa, millions of students study Science, Technology, Engineering, and Mathematics every day, but too many finish school unable to apply what they learned. The gap between what is taught in class and what is actually needed in the real world is wide, and it is costing the continent its next generation of innovators.
               </p>
               <p className="mission-body" style={{ marginTop: "0.65rem" }}>
-                This survey is the first step toward fixing that. We are gathering honest data from students, graduates, parents, and educators to understand exactly where the gap is — and to build something that closes it. Your voice is the foundation.
+                This survey is the first step toward fixing that. We are gathering honest data from students, graduates, parents, and educators to understand exactly where the gap is and to build something that closes it. Your voice is the foundation.
               </p>
             </div>
 
@@ -700,7 +710,7 @@ export default function SurveyForm() {
             <div className="stem-explainer">
               <p className="stem-explainer-title">What is STEM?</p>
               <p className="stem-explainer-body">
-                <strong>STEM</strong> stands for <strong>S</strong>cience, <strong>T</strong>echnology, <strong>E</strong>ngineering, and <strong>M</strong>athematics — the subjects behind almost every invention, solution, and system in the modern world. If you study Physics, Chemistry, Biology, Computer Science, or Mathematics, you are already in the STEM world.
+                <strong>STEM</strong> stands for <strong>S</strong>cience, <strong>T</strong>echnology, <strong>E</strong>ngineering, and <strong>M</strong>athematics, the subjects behind almost every invention, solution, and system in the modern world. If you study Physics, Chemistry, Biology, Computer Science, or Mathematics, you are already in the STEM world.
               </p>
             </div>
 
@@ -708,8 +718,8 @@ export default function SurveyForm() {
 
             {/* ── PERSONA SELECTOR ── */}
             <div className="persona-section">
-              <p className="persona-heading">First — who are you? <span className="req-star">*</span></p>
-              <p className="persona-subheading">Your answer shapes which questions you'll see. Select the option that best describes you.</p>
+              <p className="persona-heading">Who are you? <span className="req-star">*</span></p>
+              <p className="persona-subheading">Please, select the option that best describes you.</p>
               <div className="persona-grid">
                 {PERSONAS.map((p) => {
                   const isSelected = formData.persona === p.value;
@@ -786,7 +796,7 @@ export default function SurveyForm() {
             <p className="intro-lead">
               {isHighSchool
                 ? "That's all from us. Thank you for taking the time to share your honest answers — every response helps us build something that actually works for students like you. You are part of what changes STEM in Africa."
-                : "Thank you for completing all sections! Your insights are incredibly valuable. We'd love to go deeper with some participants in a short one-on-one conversation — would you be open to that?"}
+                : "Thank you for completing all sections! Your insights are incredibly valuable. We'd love to go deeper with some participants in a short one-on-one conversation. Would you be open to that?"}
             </p>
             <p className="req-legend req-legend-top"><span className="req-star">*</span> Indicates a required field</p>
             <div className="intro-divider" />
@@ -796,9 +806,9 @@ export default function SurveyForm() {
                 <p className="conclusion-q">Would you like to be contacted for a one-on-one conversation about your experience? <span className="req-star">*</span></p>
                 <div className="radio-group" style={{ marginTop: "0.75rem" }}>
                   {[
-                    { value: "yes",   label: "✅ Yes — I'm happy to be contacted" },
-                    { value: "maybe", label: "🤔 Maybe — depends on what's involved" },
-                    { value: "no",    label: "❌ No — I'd prefer to stay anonymous" },
+                    { value: "yes",   label: "✅ Yes, I'm happy to be contacted" },
+                    { value: "maybe", label: "🤔 Maybe, depends on what's involved" },
+                    { value: "no",    label: "❌ No, I'd prefer to stay anonymous" },
                   ].map((opt) => (
                     <label key={opt.value} className={`radio-card ${formData.contactConsent === opt.value ? "checked" : ""}`}>
                       <input type="radio" name="contactConsent" value={opt.value}
@@ -814,10 +824,10 @@ export default function SurveyForm() {
                 {(formData.contactConsent === "yes" || formData.contactConsent === "maybe") && (
                   <div className="conclusion-contact-fields">
                     <p className="conclusion-contact-note">Leave your details and we'll reach out — completely optional.</p>
-                    <input className="s-input" placeholder="Your name (optional)"
+                    <input className="s-input" placeholder="Your name"
                       value={formData.contactName}
                       onChange={(e) => setField("contactName", e.target.value)} />
-                    <input className="s-input" placeholder="Phone or WhatsApp number (optional)"
+                    <input className="s-input" placeholder="Phone/WhatsApp number or email"
                       value={formData.contactPhone}
                       onChange={(e) => setField("contactPhone", e.target.value)} />
                   </div>
@@ -835,7 +845,7 @@ export default function SurveyForm() {
               <button type="button" className={`btn btn-submit ${shake ? "btn-shake" : ""}`}
                 onClick={handleSubmit}
                 disabled={loading || (!isHighSchool && !formData.contactConsent)}>
-                {loading ? "Submitting..." : "Submit Response 🚀"}
+                {loading ? "Submitting..." : "Submit Response"}
               </button>
             </div>
           </div>
@@ -1097,9 +1107,9 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="hasPracticalLabs"
                   options={[
-                    { value: "yes_regular",   label: "✅ Yes — we have regular lab / practical sessions" },
-                    { value: "yes_sometimes", label: "🔄 Sometimes — but not often enough" },
-                    { value: "no",            label: "❌ No — it's mostly theory, textbooks, and notes" },
+                    { value: "yes_regular",   label: "✅ Yes, we have regular lab / practical sessions" },
+                    { value: "yes_sometimes", label: "🔄 Sometimes, but not often enough" },
+                    { value: "no",            label: "❌ No, it's mostly theory, textbooks, and notes" },
                     { value: "no_resources",  label: "🏫 We have labs but rarely use them due to lack of resources" },
                   ]}
                   selected={formData.hasPracticalLabs}
@@ -1281,7 +1291,7 @@ export default function SurveyForm() {
                     <span className="q-title-text">What would best support how you learn?</span>
                     <span className="req-star">*</span>
                   </div>
-                  <span className="q-hint">Select all the ways of learning that you think would work well for you — or that you'd genuinely enjoy.</span>
+                  <span className="q-hint">Select all the ways of learning that you think would work well for you, or that you'd genuinely enjoy.</span>
                 </label>
                 <div className="learning-style-grid">
                   {[
@@ -1334,8 +1344,8 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="inventorRepresentation"
                   options={[
-                    { value: "yes", label: "✅ Yes — I can picture someone who looks like me" },
-                    { value: "no",  label: "❌ No — I usually picture someone from another country" },
+                    { value: "yes", label: "✅ Yes, I can picture someone who looks like me" },
+                    { value: "no",  label: "❌ No, I usually picture someone from another country" },
                   ]}
                   selected={formData.inventorRepresentation}
                   onChange={(v) => setField("inventorRepresentation", v)}
@@ -1391,7 +1401,7 @@ export default function SurveyForm() {
                     <span className="q-title-text">Dream Career Mapping</span>
                     <span className="req-star">*</span>
                   </div>
-                  <span className="q-hint">What do you want to be when you grow up? Be honest — you can write "I don't know yet" if you're still figuring it out. No wrong answers here.</span>
+                  <span className="q-hint">What do you want to be when you grow up? Be honest, you can write "I don't know yet" if you're still figuring it out. No wrong answers here.</span>
                 </label>
                 <RotatingPlaceholderInput
                   placeholders={DREAM_CAREER_PLACEHOLDERS}
@@ -1419,16 +1429,16 @@ export default function SurveyForm() {
                 <label className="q-label">
                   <div className="q-title-row">
                     <span className="q-tag">Q25</span>
-                    <span className="q-title-text">App + Kit = Real Engineer?</span>
+                    <span className="q-title-text">Learning Software + Hands-on = Real ?</span>
                     <span className="req-star">*</span>
                   </div>
                   <span className="q-hint">If your school lessons were delivered through a mix of a cool learning app AND a physical kit you could hold and build with — would that make you feel like you are actually becoming your dream person (e.g. a doctor, engineer, or tech founder)?</span>
                 </label>
                 <RadioGroup name="phygitalCombined"
                   options={[
-                    { value: "yes",   label: "🔥 Yes — that would make it feel real and exciting" },
-                    { value: "maybe", label: "🤔 Maybe — it depends on how well it connects to my goal" },
-                    { value: "no",    label: "❌ No — I don't see the connection" },
+                    { value: "yes",   label: "🔥 Yes, that would make it feel real and exciting" },
+                    { value: "maybe", label: "🤔 Maybe, it depends on how well it connects to my goal" },
+                    { value: "no",    label: "❌ No, I don't see the connection" },
                   ]}
                   selected={formData.phygitalCombined} onChange={(v) => setField("phygitalCombined", v)}
                   hasError={!!errors.phygitalCombined} />
@@ -1498,9 +1508,9 @@ export default function SurveyForm() {
                   </label>
                   <RadioGroup name="ugPlatformContext"
                     options={[
-                      { value: "inside",  label: "🏫 Inside school — teachers recommended or required it" },
-                      { value: "outside", label: "🏠 Outside school — I found and used it on my own" },
-                      { value: "both",    label: "🔄 Both — inside and outside school" },
+                      { value: "inside",  label: "🏫 Inside school, teachers recommended or required it" },
+                      { value: "outside", label: "🏠 Outside school, I found and used it on my own" },
+                      { value: "both",    label: "🔄 Both, inside and outside school" },
                     ]}
                     selected={formData.ugPlatformContext}
                     onChange={(v) => setField("ugPlatformContext", v)} />
@@ -1513,7 +1523,7 @@ export default function SurveyForm() {
                   </label>
                   <RadioGroup name="ugPlatformFrequency"
                     options={[
-                      { value: "daily",   label: "📅 Daily — it was part of my routine" },
+                      { value: "daily",   label: "📅 Daily, it was part of my routine" },
                       { value: "weekly",  label: "🗓️ A few times a week" },
                       { value: "monthly", label: "📆 Once or twice a month" },
                       { value: "exam",    label: "📝 Only around exam time" },
@@ -1525,7 +1535,7 @@ export default function SurveyForm() {
                 <div className="q-card">
                   <label className="q-label">
                     <div className="q-title-row"><span className="q-tag">A3c</span><span className="q-title-text">Platform Sentiment</span><span className="optional-tag">Optional</span></div>
-                    <span className="q-hint">Did you like it? Please explain — focus on speed, engagement, or data costs.</span>
+                    <span className="q-hint">Did you like it? Please explain: focus on speed, engagement, or data costs.</span>
                   </label>
                   <RotatingPlaceholderInput multiline rows={3}
                     placeholders={[
@@ -1561,8 +1571,8 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="ugTeacherStyle"
                   options={[
-                    { value: "formulas",  label: "📖 Mostly formulas and textbooks — very academic" },
-                    { value: "practical", label: "🌍 Local, practical examples — connected to real life" },
+                    { value: "formulas",  label: "📖 Mostly formulas and textbooks (very academic)" },
+                    { value: "practical", label: "🌍 Local, practical examples (connected to real life)" },
                     { value: "mixed",     label: "⚖️ A mix of both approaches" },
                   ]}
                   selected={formData.ugTeacherStyle}
@@ -1618,9 +1628,9 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="ug21CenturyReadiness"
                   options={[
-                    { value: "yes",      label: "✅ Yes — I felt well prepared" },
-                    { value: "somewhat", label: "🤔 Somewhat — there were clear gaps" },
-                    { value: "no",       label: "❌ No — I had to learn most practical skills on my own" },
+                    { value: "yes",      label: "✅ Yes, I felt well prepared" },
+                    { value: "somewhat", label: "🤔 Somewhat, there were clear gaps" },
+                    { value: "no",       label: "❌ No, I had to learn most practical skills on my own" },
                   ]}
                   selected={formData.ug21CenturyReadiness}
                   onChange={(v) => setField("ug21CenturyReadiness", v)}
@@ -1630,19 +1640,45 @@ export default function SurveyForm() {
 
               <div className="q-card">
                 <label className="q-label">
-                  <div className="q-title-row"><span className="q-tag">C3</span><span className="q-title-text">Stay in Touch</span><span className="optional-tag">Optional</span></div>
-                  <span className="q-hint">We'd love to follow up with you for a deeper conversation. Leave your name and email if you're open to it — completely voluntary.</span>
+                  <div className="q-title-row">
+                    <span className="q-tag">C3</span>
+                    <span className="q-title-text">Paying It Forward</span>
+                    <span className="optional-tag">Optional</span>
+                  </div>
+                  <span className="q-hint">Now that you've experienced the gap between classroom theory and real-world practice, would you be open to helping close that gap for the next generation of African STEM students coming up behind you?</span>
                 </label>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
-                  <input className="s-input" placeholder="Your name"
-                    value={formData.ugContactName}
-                    onChange={(e) => setField("ugContactName", e.target.value)} />
-                  <input className="s-input" placeholder="Email address" type="email"
-                    value={formData.ugContactEmail}
-                    onChange={(e) => setField("ugContactEmail", e.target.value)} />
-                </div>
+                <RadioGroup name="ugPayItForward"
+                  options={[
+                    { value: "yes_volunteer", label: "🔥 Yes, I'd love to mentor or teach younger students, even part-time" },
+                    { value: "yes_paid",      label: "💼 Yes, but only if there's a structured paid opportunity or certification attached" },
+                    { value: "maybe",         label: "🤔 Maybe, it depends on the time commitment and format" },
+                    { value: "no",            label: "❌ Not right now, I'm too focused on my own career" },
+                  ]}
+                  selected={formData.ugPayItForward}
+                  onChange={(v) => setField("ugPayItForward", v)} />
               </div>
-              {apiError && <div className="api-error-msg">{apiError}</div>}
+
+              {(formData.ugPayItForward === "yes_volunteer" || formData.ugPayItForward === "yes_paid") && (
+                <div className="q-card">
+                  <label className="q-label">
+                    <div className="q-title-row">
+                      <span className="q-tag">C3a</span>
+                      <span className="q-title-text">What would you teach/mentor?</span>
+                      <span className="optional-tag">Optional</span>
+                    </div>
+                    <span className="q-hint">What subject or skill would you most want to teach or pass on or mentor students in?</span>
+                  </label>
+                  <RotatingPlaceholderInput
+                    placeholders={[
+                      "e.g. Python and data analysis — I wish I had learned it earlier...",
+                      "e.g. Electronics and circuit building — it changed how I think...",
+                      "e.g. How to survive university lab practicals without panicking...",
+                      "e.g. How to build a real project from scratch, not just theory...",
+                    ]}
+                    value={formData.ugWhatToTeach}
+                    onChange={(e) => setField("ugWhatToTeach", e.target.value)} />
+                </div>
+              )}
             </>)}
 
             {/* ── PARENT SECTION 1 ── */}
@@ -1662,14 +1698,14 @@ export default function SurveyForm() {
               <div className={`q-card ${errors.parentCurriculumAwareness ? "card-error" : ""}`}>
                 <label className="q-label">
                   <div className="q-title-row"><span className="q-tag">A2</span><span className="q-title-text">Curriculum Awareness</span><span className="req-star">*</span></div>
-                  <span className="q-hint">How aware are you of how regularly the national curriculum your child is studying is reviewed or updated — and whether it prepares them for today's workplace or future careers in technology?</span>
+                  <span className="q-hint">How aware are you of how regularly the national curriculum your child is studying is reviewed or updated and whether it prepares them for today's workplace or future careers in technology?</span>
                 </label>
                 <RadioGroup name="parentCurriculumAwareness"
                   options={[
-                    { value: "very",       label: "✅ Very aware — I actively follow curriculum changes and school updates" },
-                    { value: "somewhat",   label: "🤔 Somewhat — I know the basics but not the specifics" },
-                    { value: "not_much",   label: "📋 Not much — I trust the school to handle it" },
-                    { value: "not_at_all", label: "❌ Not at all — I had no idea this was something to watch" },
+                    { value: "very",       label: "✅ Very aware, I actively follow curriculum changes and school updates" },
+                    { value: "somewhat",   label: "🤔 Somewhat, I know the basics but not the specifics" },
+                    { value: "not_much",   label: "📋 Not much, I trust the school to handle it" },
+                    { value: "not_at_all", label: "❌ Not at all, I had no idea this was something to watch" },
                   ]}
                   selected={formData.parentCurriculumAwareness}
                   onChange={(v) => setField("parentCurriculumAwareness", v)}
@@ -1684,9 +1720,9 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="parentValueImportance"
                   options={[
-                    { value: "critical",  label: "🔥 It is the most important thing — I think about it often" },
+                    { value: "critical",  label: "🔥 It is the most important thing, I think about it often" },
                     { value: "important", label: "✅ It is very important but not my only priority" },
-                    { value: "somewhat",  label: "🤔 Somewhat — I mainly want them to get good grades first" },
+                    { value: "somewhat",  label: "🤔 Somewhat, I mainly want them to get good grades first" },
                     { value: "not",       label: "❌ Not a current priority for our family" },
                   ]}
                   selected={formData.parentValueImportance}
@@ -1753,11 +1789,11 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="parentPaymentModel"
                   options={[
-                    { value: "one_time",    label: "💳 One-time purchase — pay once for a kit and access" },
-                    { value: "per_term",    label: "📅 Per term — pay each school term, like a lab fee" },
-                    { value: "monthly",     label: "🔄 Monthly subscription — small recurring payment for ongoing access" },
-                    { value: "freemium",    label: "🆓 Freemium — free basic access, pay to unlock advanced content" },
-                    { value: "school_pays", label: "🏫 School should cover it — include it in school fees" },
+                    { value: "one_time",    label: "💳 One-time purchase: pay once for a kit and access" },
+                    { value: "per_term",    label: "📅 Per term: pay each school term, like a lab fee" },
+                    { value: "monthly",     label: "🔄 Monthly subscription: small recurring payment for ongoing access" },
+                    { value: "freemium",    label: "🆓 Freemium: free basic access, pay to unlock advanced content" },
+                    { value: "school_pays", label: "🏫 School should cover it: include it in school fees" },
                   ]}
                   selected={formData.parentPaymentModel}
                   onChange={(v) => setField("parentPaymentModel", v)}
@@ -1794,9 +1830,9 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="adminWhyGapFreq"
                   options={[
-                    { value: "very_often",       label: "🔥 Very often — it's a constant challenge teachers raise" },
-                    { value: "sometimes",         label: "🔄 Sometimes — mainly in certain subjects like Physics or Maths" },
-                    { value: "rarely",            label: "🤔 Rarely — most students seem to accept it without asking" },
+                    { value: "very_often",       label: "🔥 Very often, it's a constant challenge teachers raise" },
+                    { value: "sometimes",         label: "🔄 Sometimes, mainly in certain subjects like Physics or Maths" },
+                    { value: "rarely",            label: "🤔 Rarely, most students seem to accept it without asking" },
                     { value: "curriculum_helps",  label: "✅ The curriculum already provides enough real-world context" },
                   ]}
                   selected={formData.adminWhyGapFreq}
@@ -1851,10 +1887,10 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="adminPracticalPct"
                   options={[
-                    { value: "0_10",   label: "📖 0–10% — almost entirely theory and note-taking" },
-                    { value: "10_25",  label: "🔄 10–25% — some practicals but mostly theory" },
-                    { value: "25_50",  label: "⚖️ 25–50% — a reasonable balance" },
-                    { value: "50plus", label: "🔬 50%+ — hands-on learning is a priority" },
+                    { value: "0_10",   label: "📖 0–10%, almost entirely theory and note-taking" },
+                    { value: "10_25",  label: "🔄 10–25%, some practicals but mostly theory" },
+                    { value: "25_50",  label: "⚖️ 25–50%, a reasonable balance" },
+                    { value: "50plus", label: "🔬 50%+, hands-on learning is a priority" },
                   ]}
                   selected={formData.adminPracticalPct}
                   onChange={(v) => setField("adminPracticalPct", v)}
@@ -1900,9 +1936,9 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="adminIndustryExposure"
                   options={[
-                    { value: "yes_structured", label: "✅ Yes — we have a formal programme (visits, talks, partnerships)" },
-                    { value: "yes_informal",   label: "🔄 Informally — some teachers do it, but it's not structured" },
-                    { value: "no",             label: "❌ No — we don't currently have this" },
+                    { value: "yes_structured", label: "✅ Yes, we have a formal programme (visits, talks, partnerships)" },
+                    { value: "yes_informal",   label: "🔄 Informally, some teachers do it, but it's not structured" },
+                    { value: "no",             label: "❌ No, we don't currently have this" },
                   ]}
                   selected={formData.adminIndustryExposure}
                   onChange={(v) => setField("adminIndustryExposure", v)}
@@ -1913,10 +1949,10 @@ export default function SurveyForm() {
                     <label className="suggest-label">What is the primary barrier?</label>
                     <RadioGroup name="adminIndustryBarrier"
                       options={[
-                        { value: "time",     label: "⏰ Time — the timetable leaves no room" },
-                        { value: "cost",     label: "💰 Cost — transport and logistics are too expensive" },
-                        { value: "network",  label: "🤝 Network — we don't have the industry contacts" },
-                        { value: "priority", label: "📋 Priority — it's not currently seen as necessary" },
+                        { value: "time",     label: "⏰ Time, the timetable leaves no room" },
+                        { value: "cost",     label: "💰 Cost, transport and logistics are too expensive" },
+                        { value: "network",  label: "🤝 Network, we don't have the industry contacts" },
+                        { value: "priority", label: "📋 Priority, it's not currently seen as necessary" },
                       ]}
                       selected={formData.adminIndustryBarrier}
                       onChange={(v) => setField("adminIndustryBarrier", v)} />
@@ -1931,11 +1967,11 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="adminLabFrequency"
                   options={[
-                    { value: "daily",      label: "📅 Daily — every lesson should have a practical element" },
-                    { value: "3_per_week", label: "🗓️ 3 times a week — enough to reinforce each topic properly" },
-                    { value: "1_per_week", label: "🔬 Once a week — a dedicated lab session per subject" },
-                    { value: "per_term",   label: "📆 A few times per term — after each major topic" },
-                    { value: "not_sure",   label: "🤔 I'm not sure — it depends on the subject" },
+                    { value: "daily",      label: "📅 Daily, every lesson should have a practical element" },
+                    { value: "3_per_week", label: "🗓️ 3 times a week, enough to reinforce each topic properly" },
+                    { value: "1_per_week", label: "🔬 Once a week, a dedicated lab session per subject" },
+                    { value: "per_term",   label: "📆 A few times per term, after each major topic" },
+                    { value: "not_sure",   label: "🤔 I'm not sure, it depends on the subject" },
                   ]}
                   selected={formData.adminLabFrequency}
                   onChange={(v) => setField("adminLabFrequency", v)}
@@ -1953,10 +1989,10 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="adminContextualLearning"
                   options={[
-                    { value: "significant", label: "🔥 Significant — students would feel the relevance immediately" },
-                    { value: "moderate",    label: "✅ Moderate — it would help, but other factors also matter" },
-                    { value: "unsure",      label: "🤔 Unsure — hard to know without trying it" },
-                    { value: "minimal",     label: "📋 Minimal — students care more about exam results than context" },
+                    { value: "significant", label: "🔥 Significant, students would feel the relevance immediately" },
+                    { value: "moderate",    label: "✅ Moderate, it would help, but other factors also matter" },
+                    { value: "unsure",      label: "🤔 Unsure, hard to know without trying it" },
+                    { value: "minimal",     label: "📋 Minimal, students care more about exam results than context" },
                   ]}
                   selected={formData.adminContextualLearning}
                   onChange={(v) => setField("adminContextualLearning", v)}
@@ -1971,9 +2007,9 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="adminPhygitalSandbox"
                   options={[
-                    { value: "yes",   label: "✅ Yes — that would make practicals feasible at scale" },
-                    { value: "maybe", label: "🤔 Maybe — depends on the quality of the simulation" },
-                    { value: "no",    label: "❌ No — our barriers go beyond just resources" },
+                    { value: "yes",   label: "✅ Yes, that would make practicals feasible at scale" },
+                    { value: "maybe", label: "🤔 Maybe, depends on the quality of the simulation" },
+                    { value: "no",    label: "❌ No, our barriers go beyond just resources" },
                   ]}
                   selected={formData.adminPhygitalSandbox}
                   onChange={(v) => setField("adminPhygitalSandbox", v)}
@@ -1988,10 +2024,10 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="adminTeacherEmpowerment"
                   options={[
-                    { value: "game_changer", label: "🔥 That would be a game-changer — teachers need exactly that" },
-                    { value: "helpful",      label: "✅ Very helpful — it would reduce teacher workload significantly" },
-                    { value: "depends",      label: "🤔 It depends — teachers would still need training to use it" },
-                    { value: "not_priority", label: "📋 Not a top priority — we have other blockers first" },
+                    { value: "game_changer", label: "🔥 That would be a game-changer, teachers need exactly that" },
+                    { value: "helpful",      label: "✅ Very helpful, it would reduce teacher workload significantly" },
+                    { value: "depends",      label: "🤔 It depends, teachers would still need training to use it" },
+                    { value: "not_priority", label: "📋 Not a top priority, we have other blockers first" },
                   ]}
                   selected={formData.adminTeacherEmpowerment}
                   onChange={(v) => setField("adminTeacherEmpowerment", v)}
@@ -2009,10 +2045,10 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="adminHubFit"
                   options={[
-                    { value: "core",         label: "📚 Core classroom — integrated directly into daily STEM lessons" },
-                    { value: "after_school", label: "🌇 After-school Innovation Club — for motivated students" },
-                    { value: "dedicated",    label: "🔬 Dedicated lab session — one fixed period per week" },
-                    { value: "all",          label: "✨ All of the above — maximum integration across all formats" },
+                    { value: "core",         label: "📚 Core classroom, integrated directly into daily STEM lessons" },
+                    { value: "after_school", label: "🌇 After-school Innovation Club, for motivated students" },
+                    { value: "dedicated",    label: "🔬 Dedicated lab session, one fixed period per week" },
+                    { value: "all",          label: "✨ All of the above, maximum integration across all formats" },
                   ]}
                   selected={formData.adminHubFit}
                   onChange={(v) => setField("adminHubFit", v)}
@@ -2027,10 +2063,10 @@ export default function SurveyForm() {
                 </label>
                 <RadioGroup name="adminSustainabilityModel"
                   options={[
-                    { value: "parent_lab_fee",   label: "👨‍🎓 Parent-funded lab fee — small recurring cost per student per term" },
-                    { value: "school_license",   label: "🏫 School-wide institutional license — one annual invoice to the school" },
-                    { value: "grant_subsidised", label: "🏛️ Government or grant-subsidised — we would apply for funding" },
-                    { value: "mixed",            label: "⚖️ Mixed model — part school budget, part parent contribution" },
+                    { value: "parent_lab_fee",   label: "👨‍🎓 Parent-funded lab fee, small recurring cost per student per term" },
+                    { value: "school_license",   label: "🏫 School-wide institutional license, one annual invoice to the school" },
+                    { value: "grant_subsidised", label: "🏛️ Government or grant-subsidised, we would apply for funding" },
+                    { value: "mixed",            label: "⚖️ Mixed model, part school budget, part parent contribution" },
                   ]}
                   selected={formData.adminSustainabilityModel}
                   onChange={(v) => setField("adminSustainabilityModel", v)}
